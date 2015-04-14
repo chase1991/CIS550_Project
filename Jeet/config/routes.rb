@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'question_page#q1'
 
+  get 'question_page/q1'
+  
   get 'question_page/q2'
 
   get 'question_page/q3'

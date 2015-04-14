@@ -1,0 +1,32 @@
+<style>
+	.col-xs-4 {top: 13px;
+			   margin-bottom: auto;}
+</style>
+<div class="panel panel-default">
+
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+		<h1 class="panel-title">What restaurant style do you prefer?</h1>
+	</div>
+	<div class="panel-body">
+		<p>Choose a style</p>
+	</div>
+	<div class="col-xs-4">
+		<div class="form-group">
+			<select class="form-control" id="age">
+				<option><%= @age_filter[0].subtype %>fast food</option>
+				<option>some</option>
+				<option>some</option>
+				<option>other</option>
+			</select>
+		</div>
+	</div>
+
+	<!-- List group -->
+	<div class="panel-footer clearfix">
+		<div class="pull-right">
+			<a href="#" class="btn btn-primary">Find my restaurant</a>
+			<a href="/question_page/q3" class="btn btn-default">Back</a>
+		</div>
+	</div>
+</div>
