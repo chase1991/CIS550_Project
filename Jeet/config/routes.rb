@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root 'question_page#q1'
+  resources :users
+  resources :food_classes
+  resources :food_types
+
+  root 'welcome_page#index'
 
   get 'question_page/q1'
   
