@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  root 'question_page#q1'
+
+  get 'question_page/q2'
+
+  get 'question_page/q3'
+
+  get 'question_page/q4'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
