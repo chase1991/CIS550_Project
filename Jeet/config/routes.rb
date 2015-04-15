@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   resources :users
   resources :food_classes
   resources :food_types
@@ -12,6 +14,10 @@ Rails.application.routes.draw do
   get 'question_page/q3'
 
   get 'question_page/q4'
+
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
