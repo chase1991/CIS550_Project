@@ -7,13 +7,7 @@ Rails.application.routes.draw do
 
   root 'welcome_page#index'
 
-  get 'question_page/q1'
-  
-  get 'question_page/q2'
-
-  get 'question_page/q3'
-
-  get 'question_page/q4'
+  get 'questions' => 'question_page#questions'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
