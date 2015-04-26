@@ -1,6 +1,6 @@
 class CreateFoodTypes < ActiveRecord::Migration
   def change
-  	drop_table :food_types
+#  	drop_table :food_types
     create_table :food_types do |t|
       t.string :name
 

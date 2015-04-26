@@ -1,0 +1,41 @@
+<%= form_tag("/question", method: "get") %>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Choose your favorite food from countries</h3>
+    </div>
+    <div class="panel-body">
+    	<div class="col-xs-4">
+			<div class="form-group">
+				<%= select_tag :category, options_for_select(["Chinese Food", "Japanese Food", "American Food", "Mexican Food"], :class => "form-control") %>
+			</div>
+		</div>
+    </div>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">In what range do you want to search?</h3>
+    </div>
+    <div class="panel-body">
+    	<div class="col-xs-4">
+			<div class="form-group">
+				<%= select_tag :range, options_for_select(["within 1km", "within 2km", "within 3km"], :class => "form-control") %>
+			</div>
+		</div>
+    </div>
+</div>
+
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">What kind of food do you want to eat?</h3>
+    </div>
+    <div class="panel-body">
+    	<div class="col-xs-4">
+			<div class="form-group">
+				<%= select_tag :type, options_for_select(["Pubs", "Fast food", "Sushi", "Drinks", "Sweets"], :class => "form-control") %>
+			</div>
+		</div>
+    </div>
+</div>
+
+<%= submit_tag "Jeet!", :class => "btn btn-success" %>

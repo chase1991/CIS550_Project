@@ -1,13 +1,24 @@
 Rails.application.routes.draw do
+  get 'question/index'
+
+  get 'question/show'
+
+  get 'question/new'
+
+  get 'question/edit'
+
+  get 'question/delete'
+
   get 'sessions/new'
 
   resources :users
   resources :food_classes
   resources :food_types
+  resources :questions
 
   root 'welcome_page#index'
 
-  get 'questions' => 'question_page#questions'
+  get 'question' => 'question#index'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
