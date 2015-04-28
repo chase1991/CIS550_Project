@@ -15,8 +15,11 @@ Rails.application.routes.draw do
   resources :food_classes
   resources :food_types
   resources :questions
+  resources :allusers
+  resources :restaurants
+  resources :reviews
 
-  root 'welcome_page#index'
+  root 'welcome#index'
 
   get 'question' => 'question#index'
 

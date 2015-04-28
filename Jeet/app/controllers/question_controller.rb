@@ -2,6 +2,7 @@ class QuestionController < ApplicationController
 
   def index
      @question = Question.all
+     
      if params[:category] != nil 
         
      end
