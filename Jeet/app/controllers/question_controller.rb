@@ -2,14 +2,16 @@ class QuestionController < ApplicationController
 
   def index
      @question = Question.all
+     @latitude = 39.9
+     @longtitude = 116
      if params[:category] != nil 
-        
+        flash[:latitude] = @latitude
+        flash[:longtitude] = @longtitude
+        redirect_to(:action => 'new')
      end
   end
   
   def new
-    @latitude = 40.2
-      @longitude = -79.2
     @question = Question.new
   end
 

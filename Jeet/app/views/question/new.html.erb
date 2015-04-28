@@ -21,7 +21,7 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 <% end %>
-<div id="googleMap" style="width:500px;height:380px;left:600px" data-latitude="<%= @latitude %>" data-longitude="<%=@longitude %>">
+<div id="googleMap" style="width:500px;height:380px;left:600px" data-latitude="<%= flash[:latitude] %>" data-longitude="<%= flash[:longtitude] %>">
 <h1>Question#new</h1>
 <p>Find me in app/views/question/new.html.erb</p>
 <p>category: 
