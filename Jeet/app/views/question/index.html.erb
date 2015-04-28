@@ -38,4 +38,17 @@
     </div>
 </div>
 
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">What city are you in?</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-4">
+            <div class="form-group">
+                <%= select_tag :type, options_for_select(["Phoenix", "Carnegie", "Pittsburgh", "Bethel Park", "Braddock", "Dravosburg", "Charlotte", "Homestead", "Madison", "Las Vegas"], :class => "form-control") %>
+            </div>
+        </div>
+    </div>
+</div>
+
 <%= submit_tag "Jeet!", :class => "btn btn-success" %>
