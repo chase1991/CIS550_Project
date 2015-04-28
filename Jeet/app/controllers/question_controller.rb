@@ -2,13 +2,14 @@ class QuestionController < ApplicationController
 
   def index
      @question = Question.all
-     
      if params[:category] != nil 
         
      end
   end
   
   def new
+    @latitude = 40.2
+      @longitude = -79.2
     @question = Question.new
   end
 
@@ -29,6 +30,7 @@ class QuestionController < ApplicationController
     render('new')
    end
   end
+  
   
   private
 
