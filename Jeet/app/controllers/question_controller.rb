@@ -1,15 +1,17 @@
 class QuestionController < ApplicationController
-
+  attr_accessor :lat, :long
   def index
      @question = Question.all
+    @lat = 39.9
+    @long = 116
      if params[:category] != nil 
-        
+        redirect_to(:action => 'new')
      end
   end
   
   def new
-    @latitude = 40.2
-      @longitude = -79.2
+    @latitude = @lat 
+    @longtitude = @long
     @question = Question.new
   end
 
