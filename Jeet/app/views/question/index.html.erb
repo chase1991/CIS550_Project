@@ -1,4 +1,18 @@
+<div style="top:100px">
 <%= form_tag("/question", method: "get") %>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">What city are you in?</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-4">
+            <div class="form-group">
+                <%= select_tag :city, options_for_select(["Phoenix", "Carnegie", "Pittsburgh", "Bethel Park", "Braddock", "Dravosburg", "Charlotte", "Homestead", "Madison", "Las Vegas"], :class => "form-control") %>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Choose your favorite food from countries</h3>
@@ -6,7 +20,7 @@
     <div class="panel-body">
     	<div class="col-xs-4">
 			<div class="form-group">
-				<%= select_tag :category, options_for_select(["Chinese Food", "Japanese Food", "American Food", "Mexican Food"], :class => "form-control") %>
+				<%= select_tag :category, options_for_select(["American Food", "Chinese Food", "Italian Food", "Indian Food", "Japanese Food", "Mexican Food"], :class => "form-control") %>
 			</div>
 		</div>
     </div>
@@ -19,7 +33,7 @@
     <div class="panel-body">
     	<div class="col-xs-4">
 			<div class="form-group">
-				<%= select_tag :range, options_for_select(["within 1km", "within 2km", "within 3km"], :class => "form-control") %>
+				<%= select_tag :range, options_for_select(["within 5mi", "within 10mi", "within 30mi"], :class => "form-control") %>
 			</div>
 		</div>
     </div>
@@ -32,23 +46,11 @@
     <div class="panel-body">
     	<div class="col-xs-4">
 			<div class="form-group">
-				<%= select_tag :type, options_for_select(["Pubs", "Fast food", "Sushi", "Drinks", "Sweets"], :class => "form-control") %>
+				<%= select_tag :type, options_for_select(["Bakeries", "Barbeques", "Bars", "Brunch", "Burgers", "Coffee & Tea", "Fast food", "Nightlife", "Pizza", "Pubs", "Sandwiches", "Seafood", "Steak", "Sushi"], :class => "form-control") %>
 			</div>
 		</div>
     </div>
 </div>
 
-<div class="panel panel-danger">
-    <div class="panel-heading">
-        <h3 class="panel-title">What city are you in?</h3>
-    </div>
-    <div class="panel-body">
-        <div class="col-xs-4">
-            <div class="form-group">
-                <%= select_tag :type, options_for_select(["Phoenix", "Carnegie", "Pittsburgh", "Bethel Park", "Braddock", "Dravosburg", "Charlotte", "Homestead", "Madison", "Las Vegas"], :class => "form-control") %>
-            </div>
-        </div>
-    </div>
-</div>
 
 <%= submit_tag "Jeet!", :class => "btn btn-success" %>
