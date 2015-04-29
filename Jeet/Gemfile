@@ -21,6 +21,9 @@ gem 'bootstrap-sass', '3.2.0.0'
 
 gem 'mysql2'
 gem 'rbing'
+gem 'geocoder'
+gem 'searchbing'
+gem 'binged'
 
 # Use jquery as the JavaScript library
 

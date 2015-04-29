@@ -4,6 +4,14 @@ class QuestionController < ApplicationController
      @question = Question.all
      @latitude = 39.9
      @longtitude = 116
+
+     #bing = RBing.new("zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY")
+     #@rsp = bing.web("ruby")
+     #@searchResult = rsp.web.results[0].title
+     #@rsp = Geocoder.search("1 Twins Way, Minneapolis")
+     #@rsp = Bing.new("zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY", 10, "Web")
+     @rps = Binged::Client.new.web("ruby")
+
      if params[:category] != nil 
         flash[:latitude] = @latitude
         flash[:longtitude] = @longtitude
