@@ -5,8 +5,15 @@ class QuestionController < ApplicationController
     param1 = params[:param1]
     param2 = params[:param2]
     BingSearch.account_key = 'zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY'
+<<<<<<< HEAD
     keywords = "" << param1 << " " << param2
     @result = BingSearch.composite(keywords, [:web, :image, :news])
+=======
+    if (params[:param1] != nil && params[:param2] != nil) 
+      keywords = "" << params[:param1] << " " << params[:param2]
+      @result = BingSearch.composite(keywords, [:web, :image, :news])
+    end
+>>>>>>> 7835b711b399d5af8975ef4ad20b4565f3925f75
   end
 
   def index
@@ -25,12 +32,19 @@ class QuestionController < ApplicationController
         when "Pittsburgh"
           @longitude = -80
           @latitude = 40.4
-        when "Bethel Park"
-          @longitude = -80.03
-          @latitude = 40.32
-        when "Bethel Park"
-          @longitude = -112
-          @latitude = 33.45
+        when "Charlotte"
+          @longitude = -80.8
+          @latitude = 35.26
+        when "Las Vegas"
+          @longitude = -114.97
+          @latitude = 35.927
+        when "Madison"
+          @longitude = -89.42
+          @latitude = 43.07
+        when "Homestead"
+          @longitude = --79.9
+          @latitude = 40.39
+          
         else
  
         end
@@ -87,13 +101,19 @@ class QuestionController < ApplicationController
           flash[:distance] << (r.distance.to_s[0, 5] + " Miles")
         end
         
-        
-        
-        redirect_to(:action => 'new')
+        if (!flash[:name].any?) 
+          redirect_to(:action => "error")
+        else 
+          redirect_to(:action => 'new')
+        end
      end
   end
   
   def new
+    @question = Question.new
+  end
+  
+  def error 
     @question = Question.new
   end
 
@@ -113,6 +133,9 @@ class QuestionController < ApplicationController
    else
     render('new')
    end
+  
+  
+  
   end
   
   

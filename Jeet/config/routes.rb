@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'question/delete'
 
+  get 'question/error'
+  
   get 'sessions/new'
 
   resources :users

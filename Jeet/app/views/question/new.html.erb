@@ -50,35 +50,49 @@
 		<th>Rating</th>
 		<th>Distance</th>
   	</tr>
+	<% if (flash[:name][0] != nil) %>
 	<tr>
-		<td><%= link_to "<%= flash[:name][0] %>", search_path(:param1 => "<%= flash[:name][0] %>", 
-			:param2 => "<%= flash[:address][0] %>") %></a></td>
+		<td><%= link_to flash[:name][0], search_path(:param1 => flash[:name][0], 
+		:param2 => flash[:address][0]) %></td>
 		<td><%= flash[:address][0] %></td>
 		<td><%= flash[:star][0] %></td>
 		<td><%= flash[:distance][0] %></td>
 	</tr>
+	<% end %>
+	<% if (flash[:name][1] != nil) %>
 	<tr>
-		<td><a href="#" style="text-decoration:none"><%= flash[:name][1] %></a></td>
+		<td><%= link_to flash[:name][1], search_path(:param1 => flash[:name][1], 
+		:param2 => flash[:address][1]) %></td>
 		<td><%= flash[:address][1] %></td> 
 		<td><%= flash[:star][1] %></td>
 		<td><%= flash[:distance][1] %></td>
 	</tr>
+	<% end %>
+	<% if (flash[:name][2] != nil) %>
 	<tr>
-		<td><a href="#" style="text-decoration:none"><%= flash[:name][2] %></a></td>
+		<td><%= link_to flash[:name][2], search_path(:param1 => flash[:name][2], 
+		:param2 => flash[:address][2]) %></td>
 		<td><%= flash[:address][2] %></td> 
 		<td><%= flash[:star][2] %></td>
 		<td><%= flash[:distance][2] %></td>
 	</tr>
+	<% end %>
+	<% if (flash[:name][3] != nil) %>
 	<tr>
-		<td><a href="#" style="text-decoration:none"><%= flash[:name][3] %></a></td>
+		<td><%= link_to flash[:name][3], search_path(:param1 => flash[:name][3], 
+		:param2 => flash[:address][3]) %></td>
 		<td><%= flash[:address][3] %></td> 
 		<td><%= flash[:star][3] %></td>
 		<td><%= flash[:distance][3] %></td>
 	</tr>
+	<% end %>
+	<% if (flash[:name][4] != nil) %>
 	<tr>
-		<td><a href="#" style="text-decoration:none"><%= flash[:name][4] %></a></td>
+		<td><%= link_to flash[:name][4], search_path(:param1 => flash[:name][4], 
+		:param2 => flash[:address][4]) %></td>
 		<td><%= flash[:address][4] %></td> 
 		<td><%= flash[:star][4] %></td>
 		<td><%= flash[:distance][4] %></td>
 	</tr>
+	<% end %>
 </table>
