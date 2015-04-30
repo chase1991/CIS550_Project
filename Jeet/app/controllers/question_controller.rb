@@ -2,8 +2,11 @@
 
 class QuestionController < ApplicationController
   def search
+    param1 = params[:param1]
+    param2 = params[:param2]
     BingSearch.account_key = 'zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY'
-    @result = BingSearch.composite("yelp castle tavern inc 3160 library rd pittsburgh, pa 15234", [:web, :image, :news])
+    keywords = "" << param1 << " " << param2
+    @result = BingSearch.composite(keywords, [:web, :image, :news])
   end
 
   def index

@@ -51,7 +51,8 @@
 		<th>Distance</th>
   	</tr>
 	<tr>
-		<td><a href="#" style="text-decoration:none"><%= flash[:name][0] %></a></td>
+		<td><%= link_to "<%= flash[:name][0] %>", search_path(:param1 => "<%= flash[:name][0] %>", 
+			:param2 => "<%= flash[:address][0] %>") %></a></td>
 		<td><%= flash[:address][0] %></td>
 		<td><%= flash[:star][0] %></td>
 		<td><%= flash[:distance][0] %></td>
