@@ -9,10 +9,6 @@ class QuestionController < ApplicationController
   def index
      @question = Question.all
 
-     BingSearch.account_key = 'zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY'
-     #BingSearch.web_only = true
-     @rsp = BingSearch.web('Dyson').first
-
      #bing_image = Bing.new('zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY', 10, 'Image')
      #bing_results = bing_image.search("puffin")
      #@rsp = bing_results[0]["ImageTotal"]
