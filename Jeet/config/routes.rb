@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'question' => 'question#index'
+  get 'search' => 'question#search'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
