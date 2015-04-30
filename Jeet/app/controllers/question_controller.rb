@@ -3,7 +3,7 @@
 class QuestionController < ApplicationController
   def search
     BingSearch.account_key = 'zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY'
-    @result = BingSearch.composite("majorana", [:web, :image, :news])
+    @result = BingSearch.composite("yelp castle tavern inc 3160 library rd pittsburgh, pa 15234", [:web, :image, :news])
   end
 
   def index
@@ -18,7 +18,6 @@ class QuestionController < ApplicationController
      #@rsp = bing_results[0]["ImageTotal"]
 
      if params[:category] != nil 
-<<<<<<< HEAD
      @latitude = 39.9
      @longtitude = 116
 
@@ -35,7 +34,6 @@ class QuestionController < ApplicationController
       flash[:latitude] = @latitude
       flash[:longtitude] = @longtitude
       redirect_to(:action => 'new')
-=======
         latitude = 33.45
         longitude = -112.06
         sql = "
@@ -92,7 +90,6 @@ class QuestionController < ApplicationController
         
         
         redirect_to(:action => 'new')
->>>>>>> 11e28c39bc5695d68b49c9bad42f6b17755bf9e1
      end
   end
   
