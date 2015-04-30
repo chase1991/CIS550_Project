@@ -1,29 +1,83 @@
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-<%= javascript_tag do %>
+<head> 
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+	<title>Google Maps Multiple Markers</title> 
+	<script src="http://maps.google.com/maps/api/js?sensor=false" 
+					type="text/javascript"></script>
+</head> 
+<body>
+	<div id="map" style="width:100%;height:450px" data-name1="<%= flash[:name][0] %>" data-latitude1="<%= flash[:latitude][0] %>" data-longitude1="<%= flash[:longitude][0] %>" data-name2="<%= flash[:name][1] %>" data-latitude2="<%= flash[:latitude][1] %>" data-longitude2="<%= flash[:longitude][1] %>" data-name3="<%= flash[:name][2] %>" data-latitude3"<%= flash[:latitude][2] %>" data-longitude3="<%= flash[:longitude][2] %>" data-name4="<%= flash[:name][3] %>" data-latitude4="<%= flash[:latitude][3] %>" data-longitude4="<%= flash[:longitude][3] %>" data-name5="<%= flash[:name][4] %>" data-latitude5="<%= flash[:latitude][4] %>" data-longitude5="<%= flash[:longitude][4] %>">
 
-function initialize() {
-	var mapDiv = $('#googleMap');
-	var lat = mapDiv.data('latitude'),
-			lng = mapDiv.data('longitude');
-	var mycenter = new google.maps.LatLng(lat,lng);
+	<script type="text/javascript">
+		var mapDiv = $('#map');
+		var locations = [
+			[mapDiv.data('name1'), mapDiv.data('latitude1'), mapDiv.data('longitude1'), 4],
+			[mapDiv.data('name2'), mapDiv.data('latitude2'), mapDiv.data('longitude2'), 5],
+			[mapDiv.data('name3'), mapDiv.data('latitude3'), mapDiv.data('longitude3'), 3],
+			[mapDiv.data('name4'), mapDiv.data('latitude4'), mapDiv.data('longitude4'), 2],
+			[mapDiv.data('name5'), mapDiv.data('latitude5'), mapDiv.data('longitude5'), 1]
+		];
 
-	var mapOptions = {
-		center: mycenter,
-		zoom: 5,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-	var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
-	var marker=new google.maps.Marker({
-		position: mycenter
-	});
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 10,
+			center: new google.maps.LatLng(mapDiv.data('latitude1'), mapDiv.data('longitude1')),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
 
-	marker.setMap(map);
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-<% end %>
-<div id="googleMap" style="width:500px;height:380px;left:600px" data-latitude="<%= flash[:latitude] %>" data-longitude="<%= flash[:longtitude] %>">
-<h1>Question#new</h1>
-<p>Find me in app/views/question/new.html.erb</p>
-<p>category: 
-</p>
+		var infowindow = new google.maps.InfoWindow();
+
+		var marker, i;
+
+		for (i = 0; i < locations.length; i++) {  
+			marker = new google.maps.Marker({
+				position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+				map: map
+			});
+
+			google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				return function() {
+					infowindow.setContent(locations[i][0]);
+					infowindow.open(map, marker);
+				}
+			})(marker, i));
+		}
+	</script>
 </div>
+
+<table style="width:100%; margin:50px 0 0 0" class="table table-hover">
+	<tr>
+		<th>Restaurant Name</th>
+		<th>Address</th>		
+		<th>Rating</th>
+		<th>Distance</th>
+  	</tr>
+	<tr>
+		<td><a href="#" style="text-decoration:none"><%= flash[:name][0] %></a></td>
+		<td><%= flash[:address][0] %></td>
+		<td><%= flash[:star][0] %></td>
+		<td><%= flash[:distance][0] %></td>
+	</tr>
+	<tr>
+		<td><a href="#" style="text-decoration:none"><%= flash[:name][1] %></a></td>
+		<td><%= flash[:address][1] %></td> 
+		<td><%= flash[:star][1] %></td>
+		<td><%= flash[:distance][1] %></td>
+	</tr>
+	<tr>
+		<td><a href="#" style="text-decoration:none"><%= flash[:name][2] %></a></td>
+		<td><%= flash[:address][2] %></td> 
+		<td><%= flash[:star][2] %></td>
+		<td><%= flash[:distance][2] %></td>
+	</tr>
+	<tr>
+		<td><a href="#" style="text-decoration:none"><%= flash[:name][3] %></a></td>
+		<td><%= flash[:address][3] %></td> 
+		<td><%= flash[:star][3] %></td>
+		<td><%= flash[:distance][3] %></td>
+	</tr>
+	<tr>
+		<td><a href="#" style="text-decoration:none"><%= flash[:name][4] %></a></td>
+		<td><%= flash[:address][4] %></td> 
+		<td><%= flash[:star][4] %></td>
+		<td><%= flash[:distance][4] %></td>
+	</tr>
+</table>
