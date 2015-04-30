@@ -12,13 +12,54 @@
 			<br><a class="btn btn-success" role="button" href="<%= @result.web.first.url %>">Get more info here</a>
 			
 			<br><br>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="70"
-						aria-valuemin="0" aria-valuemax="100" style="width:70%">70
-					</div>
-				</div>
+<!-- 				<div class="progress"> -->
+<!-- 					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="70" -->
+<!-- 						aria-valuemin="0" aria-valuemax="100" style="width:70%">70 -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</br></br>
 		</div>
+		
+		<p style="font-size:12pt; line-height:10px">You may also be interested in these restaurants:</p>
+		<table style="width:100%; margin:50px 0 0 0" class="table table-hover">
+			<tr>
+				<th>Restaurant Name</th>
+				<th>Address</th>	
+				<th>Category</th>		
+				<th>Rating</th>
+			</tr>
+			<tr>
+				<td><%= flash[:name2][0] %></td>
+				<td><%= flash[:address2][0] %></td>
+				<td><%= flash[:category2][0] %></td>
+				<td><%= flash[:star2][0] %></td>
+			</tr>
+			<tr>
+				<td><%= flash[:name2][1] %></td>
+				<td><%= flash[:address2][1] %></td>
+				<td><%= flash[:category2][1] %></td>
+				<td><%= flash[:star2][1] %></td>
+			</tr>
+			<tr>	
+				<td><%= flash[:name2][2] %></td>
+				<td><%= flash[:address2][2] %></td>
+				<td><%= flash[:category2][2] %></td>
+				<td><%= flash[:star2][2] %></td>
+			</tr>
+			<tr>	
+				<td><%= flash[:name2][3] %></td>
+				<td><%= flash[:address2][3] %></td>
+				<td><%= flash[:category2][3] %></td>
+				<td><%= flash[:star2][3] %></td>
+			</tr>
+			<tr>	
+				<td><%= flash[:name2][4] %></td>
+				<td><%= flash[:address2][4] %></td>
+				<td><%= flash[:category2][4] %></td>
+				<td><%= flash[:star2][4] %></td>
+			</tr>
+		</table>
+		
 	</body>
 
 </html>
