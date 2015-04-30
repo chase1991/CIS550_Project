@@ -9,33 +9,34 @@ class QuestionController < ApplicationController
   def index
      @question = Question.all
 
-     #bing_image = Bing.new('zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY', 10, 'Image')
-     #bing_results = bing_image.search("puffin")
-     #@rsp = bing_results[0]["ImageTotal"]
+     if params[:category] != nil
+        puts params[:city]
+    
+        case params[:city]
+        when "Phoenix"
+          @longitude = -112
+          @latitude = 33.45
+        when "Carnegie"
+          @longitude = -80.1
+          @latitude = 40.4
+        when "Pittsburgh"
+          @longitude = -80
+          @latitude = 40.4
+        when "Bethel Park"
+          @longitude = -80.03
+          @latitude = 40.32
+        when "Bethel Park"
+          @longitude = -112
+          @latitude = 33.45
+        else
+ 
+        end
+        puts "longitude: " + @longitude.to_s
 
-     if params[:category] != nil 
-     @latitude = 39.9
-     @longtitude = 116
-
-     
-
-     #@rsp = bing.web("ruby")
-     #@searchResult = rsp.web.results[0].title
-     #@rsp = Geocoder.search("1 Twins Way, Minneapolis")
-     #@rsp = Bing.new("zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY", 10, "Web")
-     #@rsp = Binged::Client.new(:api_key => '40e5a6ee363c4dddb3fcaf4a23c9df5e')
-     #@rsp = GoogleCustomSearch.search("Hank Aaron")
-     #results = GoogleCustomSearchApi.search("poker")
-     #@rsp = results["items"][0]["title"]
-      flash[:latitude] = @latitude
-      flash[:longtitude] = @longtitude
-      redirect_to(:action => 'new')
-        latitude = 33.45
-        longitude = -112.06
         sql = "
         select R1.restaurant_id, R1.name, R1.full_address, R1.star, R1.distance, R1.latitude, R1.longitude
         from
-        (Select distinct R.restaurant_id,R.name, R.full_address, R.star, SQRT(POW(69.1 * (R.latitude - " + latitude.to_s  + "), 2) + POW(69.1 * (" + longitude.to_s + " - R.longitude) * COS(latitude / 57.3), 2)) AS distance, R.latitude, R.longitude
+        (Select distinct R.restaurant_id,R.name, R.full_address, R.star, SQRT(POW(69.1 * (R.latitude - " + @latitude.to_s  + "), 2) + POW(69.1 * (" + @longitude.to_s + " - R.longitude) * COS(latitude / 57.3), 2)) AS distance, R.latitude, R.longitude
         From restaurants R
         Where R.city like '%" + params[:city] +
         "%') R1
