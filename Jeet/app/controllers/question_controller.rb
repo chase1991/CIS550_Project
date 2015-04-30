@@ -7,6 +7,61 @@ class QuestionController < ApplicationController
     BingSearch.account_key = 'zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY'
     keywords = "" << params[:param1] << " " << params[:param2]
     @result = BingSearch.composite(keywords, [:web, :image, :news])
+    
+    sql = "SELECT R1.name, R1.full_address, R1.city, BC1.category, R1.star,SeniorUser.user_id, RE3.business_id
+    From 
+    (
+    SELECT Users.user_id, count(Review.business_id) as totalNum
+    FROM
+    (
+    Select distinct RE1.user_id
+    From reviews RE1
+    Where RE1.business_id = '" + params[:param3] + "') as Users
+    Inner join 
+    (
+    Select RE2.user_id, RE2.business_id
+    from reviews RE2  
+    ) as Review
+    on Users.user_id = Review.user_id
+    group by Users.user_id
+    order by totalNum desc
+    limit 1
+    ) as SeniorUser
+    Inner join reviews RE3
+    Inner join
+    (Select R.restaurant_id,R.name, R.full_address, R.city, R.star
+    From restaurants R
+    ) as R1
+    Inner join 
+    ( Select *
+    From business_category BC
+    Where BC.category Like '%" + params[:param4] + "%'
+    ) as BC1
+    where SeniorUser.user_id = RE3.user_id and RE3.business_id = R1.restaurant_id and R1.restaurant_id = BC1.business_id
+    order by R1.star DESC,SeniorUser.user_id
+    limit 5"
+    restaurants = Restaurant.find_by_sql(sql)
+    
+    flash[:name2] = []
+    restaurants.each do |r|
+      flash[:name2] << r.name
+    end
+    
+    flash[:address2] = []
+    restaurants.each do |r|
+      flash[:address2] << r.full_address
+    end
+    
+    flash[:category2] = []
+    restaurants.each do |r|
+      flash[:category2] << r.category
+    end
+    
+    flash[:star2] = []
+    restaurants.each do |r|
+      flash[:star2] << r.star.to_s + "/5.0"
+    end
+    
   end
 
   def index
@@ -35,7 +90,7 @@ class QuestionController < ApplicationController
           @longitude = -89.42
           @latitude = 43.07
         when "Homestead"
-          @longitude = --79.9
+          @longitude = -79.9
           @latitude = 40.39
           
         else
@@ -44,7 +99,7 @@ class QuestionController < ApplicationController
         puts "longitude: " + @longitude.to_s
 
         sql = "
-        select R1.restaurant_id, R1.name, R1.full_address, R1.star, R1.distance, R1.latitude, R1.longitude
+        select R1.restaurant_id, R1.name, R1.full_address, R1.star, R1.distance, R1.latitude, R1.longitude, RC1.category
         from
         (Select distinct R.restaurant_id,R.name, R.full_address, R.star, SQRT(POW(69.1 * (R.latitude - " + @latitude.to_s  + "), 2) + POW(69.1 * (" + @longitude.to_s + " - R.longitude) * COS(latitude / 57.3), 2)) AS distance, R.latitude, R.longitude
         From restaurants R
@@ -65,33 +120,22 @@ class QuestionController < ApplicationController
         restaurants = Restaurant.find_by_sql(sql)
         
         flash[:latitude] = []
+        flash[:longitude] = []
+        flash[:name] = []
+        flash[:address] = []
+        flash[:star] = []
+        flash[:distance] = []
+        flash[:category] = []
+        flash[:id] = []
         restaurants.each do |r|
           flash[:latitude] << r.latitude
-        end
-        
-        flash[:longitude] = []
-          restaurants.each do |r|
-        flash[:longitude] << r.longitude
-        end
-        
-        flash[:name] = []
-        restaurants.each do |r|
+          flash[:longitude] << r.longitude
           flash[:name] << r.name
-        end
-        
-        flash[:address] = []
-        restaurants.each do |r|
           flash[:address] << r.full_address
-        end
-        
-        flash[:star] = []
-        restaurants.each do |r|
           flash[:star] << r.star.to_s + "/5.0"
-        end
-        
-        flash[:distance] = []
-        restaurants.each do |r|
           flash[:distance] << (r.distance.to_s[0, 5] + " Miles")
+          flash[:category] << r.category
+          flash[:id] << r.restaurant_id
         end
         
         if (!flash[:name].any?) 

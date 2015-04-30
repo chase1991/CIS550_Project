@@ -5,16 +5,18 @@
 					type="text/javascript"></script>
 </head> 
 <body>
-	<div id="map" style="width:100%;height:450px" data-name1="<%= flash[:name][0] %>" data-latitude1="<%= flash[:latitude][0] %>" data-longitude1="<%= flash[:longitude][0] %>" data-name2="<%= flash[:name][1] %>" data-latitude2="<%= flash[:latitude][1] %>" data-longitude2="<%= flash[:longitude][1] %>" data-name3="<%= flash[:name][2] %>" data-latitude3"<%= flash[:latitude][2] %>" data-longitude3="<%= flash[:longitude][2] %>" data-name4="<%= flash[:name][3] %>" data-latitude4="<%= flash[:latitude][3] %>" data-longitude4="<%= flash[:longitude][3] %>" data-name5="<%= flash[:name][4] %>" data-latitude5="<%= flash[:latitude][4] %>" data-longitude5="<%= flash[:longitude][4] %>">
+	<div id="map" style="width:100%;height:450px" 
+data-name1="<%= flash[:name][0] %>" data-latitude1="<%= flash[:latitude][0] %>" data-longitude1="<%= flash[:longitude][0] %>" data-name2="<%= flash[:name][1] %>" data-latitude2="<%= flash[:latitude][1] %>" data-longitude2="<%= flash[:longitude][1] %>" data-name3="<%= flash[:name][2] %>" data-latitude3="<%= flash[:latitude][2] %>" data-longitude3="<%= flash[:longitude][2] %>" 
+data-name4="<%= flash[:name][3] %>" data-latitude4="<%= flash[:latitude][3] %>" data-longitude4="<%= flash[:longitude][3] %>" data-name5="<%= flash[:name][4] %>" data-latitude5="<%= flash[:latitude][4] %>" data-longitude5="<%= flash[:longitude][4] %>">
 
 	<script type="text/javascript">
 		var mapDiv = $('#map');
 		var locations = [
-			[mapDiv.data('name1'), mapDiv.data('latitude1'), mapDiv.data('longitude1'), 4],
-			[mapDiv.data('name2'), mapDiv.data('latitude2'), mapDiv.data('longitude2'), 5],
+			[mapDiv.data('name1'), mapDiv.data('latitude1'), mapDiv.data('longitude1'), 1],
+			[mapDiv.data('name2'), mapDiv.data('latitude2'), mapDiv.data('longitude2'), 2],
 			[mapDiv.data('name3'), mapDiv.data('latitude3'), mapDiv.data('longitude3'), 3],
-			[mapDiv.data('name4'), mapDiv.data('latitude4'), mapDiv.data('longitude4'), 2],
-			[mapDiv.data('name5'), mapDiv.data('latitude5'), mapDiv.data('longitude5'), 1]
+			[mapDiv.data('name4'), mapDiv.data('latitude4'), mapDiv.data('longitude4'), 4],
+			[mapDiv.data('name5'), mapDiv.data('latitude5'), mapDiv.data('longitude5'), 5]
 		];
 
 		var map = new google.maps.Map(document.getElementById('map'), {
@@ -53,8 +55,8 @@
 	<% if (flash[:name][0] != nil) %>
 	<tr>
 		<td><%= link_to flash[:name][0], search_path(:param1 => flash[:name][0], 
-		:param2 => flash[:address][0]) %></td>
-		<td><%= flash[:address][0] %></td>
+		:param2 => flash[:address][0], :param3 => flash[:id][0], :param4 => flash[:category][0]) %></td>
+		<td><%= flash[:address][0] %></td>	
 		<td><%= flash[:star][0] %></td>
 		<td><%= flash[:distance][0] %></td>
 	</tr>
