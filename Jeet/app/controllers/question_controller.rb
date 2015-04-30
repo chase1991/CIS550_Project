@@ -5,15 +5,8 @@ class QuestionController < ApplicationController
     param1 = params[:param1]
     param2 = params[:param2]
     BingSearch.account_key = 'zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY'
-<<<<<<< HEAD
-    keywords = "" << param1 << " " << param2
+    keywords = "" << params[:param1] << " " << params[:param2]
     @result = BingSearch.composite(keywords, [:web, :image, :news])
-=======
-    if (params[:param1] != nil && params[:param2] != nil) 
-      keywords = "" << params[:param1] << " " << params[:param2]
-      @result = BingSearch.composite(keywords, [:web, :image, :news])
-    end
->>>>>>> 7835b711b399d5af8975ef4ad20b4565f3925f75
   end
 
   def index
