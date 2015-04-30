@@ -9,7 +9,7 @@
 		<div class="container-fluid text-center">
 			<h1 style="letter-spacing: 1px; font-size:14pt; text-transform: uppercase;" class="lead"><%= @result.web.first.title %></h1>
 			<% if (@result.image.first != nil) %>
-				<img src="<%= @result.image.first.media_url %>" class="img-circle" style="width:60%"">
+				<img src="<%= @result.image.first.media_url %>" class="img-circle" style="width:60%">
 			<% end %>
 
 			<p></br></br><%= @result.web.first.summary %></p>
@@ -17,6 +17,7 @@
 			
 			<br><br>
 			</br></br>
+
 		</div>
 		
 		<p class="lead" style="font-size:11pt; line-height:10px">You may also be interested in these restaurants:</p>
@@ -27,36 +28,56 @@
 				<th>Category</th>		
 				<th>Rating</th>
 			</tr>
+			<% if (flash[:name2][0] != nil) %>
+			<% keywords = "" %>
+			<% search_result = BingSearch.composite(keywords << flash[:name2][0] << " " << flash[:address2][0], [:web, :image, :news]) %>
 			<tr>
-				<td><%= flash[:name2][0] %></td>
+				<td><a href="<%= search_result.web.first.url %>"><%= flash[:name2][0] %></a></td>
 				<td><%= flash[:address2][0] %></td>
 				<td><%= flash[:category2][0] %></td>
 				<td><%= flash[:star2][0] %></td>
 			</tr>
+			<% end %>
+			<% if (flash[:name2][1] != nil) %>
+			<% keywords = "" %>
+			<% search_result = BingSearch.composite(keywords << flash[:name2][1] << " " << flash[:address2][1], [:web, :image, :news]) %>
 			<tr>
-				<td><%= flash[:name2][1] %></td>
+				<td><a href="<%= search_result.web.first.url %>"><%= flash[:name2][1] %></a></td>
 				<td><%= flash[:address2][1] %></td>
 				<td><%= flash[:category2][1] %></td>
 				<td><%= flash[:star2][1] %></td>
 			</tr>
+			<% end %>
+			<% if (flash[:name2][2] != nil) %>
+			<% keywords = "" %>
+			<% search_result = BingSearch.composite(keywords << flash[:name2][2] << " " << flash[:address2][2], [:web, :image, :news]) %>
 			<tr>	
-				<td><%= flash[:name2][2] %></td>
+				<td><a href="<%= search_result.web.first.url %>"><%= flash[:name2][2] %></a></td>
 				<td><%= flash[:address2][2] %></td>
 				<td><%= flash[:category2][2] %></td>
 				<td><%= flash[:star2][2] %></td>
 			</tr>
+			<% end %>
+			<% if (flash[:name2][3] != nil) %>
+			<% keywords = "" %>
+			<% search_result = BingSearch.composite(keywords << flash[:name2][3] << " " << flash[:address2][3], [:web, :image, :news]) %>
 			<tr>	
-				<td><%= flash[:name2][3] %></td>
+				<td><a href="<%= search_result.web.first.url %>"><%= flash[:name2][3] %></a></td>
 				<td><%= flash[:address2][3] %></td>
 				<td><%= flash[:category2][3] %></td>
 				<td><%= flash[:star2][3] %></td>
 			</tr>
+			<% end %>
+			<% if (flash[:name2][4] != nil) %>
+			<% keywords = "" %>
+			<% search_result = BingSearch.composite(keywords << flash[:name2][4] << " " << flash[:address2][4], [:web, :image, :news]) %>
 			<tr>	
-				<td><%= flash[:name2][4] %></td>
+				<td><a href="<%= search_result.web.first.url %>"><%= flash[:name2][4] %></a></td>
 				<td><%= flash[:address2][4] %></td>
 				<td><%= flash[:category2][4] %></td>
 				<td><%= flash[:star2][4] %></td>
 			</tr>
+			<% end %>
 		</table>
 		
 	</body>

@@ -2,11 +2,11 @@
 
 class QuestionController < ApplicationController
   def search
+    param1 = params[:param1]
+    param2 = params[:param2]
     BingSearch.account_key = 'zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY'
-    if (params[:param1] != nil && params[:param2] != nil) 
-      keywords = "" << params[:param1] << " " << params[:param2]
-      @result = BingSearch.composite(keywords, [:web, :image, :news])
-    end
+    keywords = "" << params[:param1] << " " << params[:param2]
+    @result = BingSearch.composite(keywords, [:web, :image, :news])
     
     sql = "SELECT R1.name, R1.full_address, R1.city, BC1.category, R1.star,SeniorUser.user_id, RE3.business_id
     From 
@@ -66,7 +66,6 @@ class QuestionController < ApplicationController
 
   def index
      @question = Question.all
-
 
      if params[:category] != nil
         puts params[:city]
