@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Search Result</title>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<h1><%= @result.web.first.title %></h1>
+			<p><%= @result.web.first.summary %></p>
+			<a class="mark" href="<%= @result.web.first.url %>">Get more info here</a>
+			
+		</div>
+	</body>
+
+</html>

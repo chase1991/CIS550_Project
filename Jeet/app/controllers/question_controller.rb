@@ -1,6 +1,14 @@
+
+
 class QuestionController < ApplicationController
+  def search
+    BingSearch.account_key = 'zAA9aG0iKmtlXNjQLdNVhsmcRaGf6GqX2ypJpQJAHvY'
+    @result = BingSearch.composite("yelp castle tavern inc 3160 library rd pittsburgh, pa 15234", [:web, :image, :news])
+  end
+
   def index
      @question = Question.all
+
 
      if params[:category] != nil
         puts params[:city]
@@ -25,6 +33,7 @@ class QuestionController < ApplicationController
  
         end
         puts "longitude: " + @longitude.to_s
+
         sql = "
         select R1.restaurant_id, R1.name, R1.full_address, R1.star, R1.distance, R1.latitude, R1.longitude
         from
