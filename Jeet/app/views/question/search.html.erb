@@ -7,20 +7,19 @@
 
 	<body>
 		<div class="container-fluid text-center">
-			<h1><%= @result.web.first.title %></h1>
-			<p><%= @result.web.first.summary %></p>
+			<h1 style="letter-spacing: 1px; font-size:14pt; text-transform: uppercase;" class="lead"><%= @result.web.first.title %></h1>
+			<% if (@result.image.first != nil) %>
+				<img src="<%= @result.image.first.media_url %>" class="img-circle" style="width:60%"">
+			<% end %>
+
+			<p></br></br><%= @result.web.first.summary %></p>
 			<br><a class="btn btn-success" role="button" href="<%= @result.web.first.url %>">Get more info here</a>
 			
 			<br><br>
-<!-- 				<div class="progress"> -->
-<!-- 					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="70" -->
-<!-- 						aria-valuemin="0" aria-valuemax="100" style="width:70%">70 -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 			</br></br>
 		</div>
 		
-		<p style="font-size:12pt; line-height:10px">You may also be interested in these restaurants:</p>
+		<p class="lead" style="font-size:11pt; line-height:10px">You may also be interested in these restaurants:</p>
 		<table style="width:100%; margin:50px 0 0 0" class="table table-hover">
 			<tr>
 				<th>Restaurant Name</th>
