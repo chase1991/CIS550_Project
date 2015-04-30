@@ -1,13 +1,34 @@
 class QuestionController < ApplicationController
   def index
      @question = Question.all
-     if params[:category] != nil 
-        latitude = 33.45
-        longitude = -112.06
+
+     if params[:category] != nil
+        puts params[:city]
+    
+        case params[:city]
+        when "Phoenix"
+          @longitude = -112
+          @latitude = 33.45
+        when "Carnegie"
+          @longitude = -80.1
+          @latitude = 40.4
+        when "Pittsburgh"
+          @longitude = -80
+          @latitude = 40.4
+        when "Bethel Park"
+          @longitude = -80.03
+          @latitude = 40.32
+        when "Bethel Park"
+          @longitude = -112
+          @latitude = 33.45
+        else
+ 
+        end
+        puts "longitude: " + @longitude.to_s
         sql = "
         select R1.restaurant_id, R1.name, R1.full_address, R1.star, R1.distance, R1.latitude, R1.longitude
         from
-        (Select distinct R.restaurant_id,R.name, R.full_address, R.star, SQRT(POW(69.1 * (R.latitude - " + latitude.to_s  + "), 2) + POW(69.1 * (" + longitude.to_s + " - R.longitude) * COS(latitude / 57.3), 2)) AS distance, R.latitude, R.longitude
+        (Select distinct R.restaurant_id,R.name, R.full_address, R.star, SQRT(POW(69.1 * (R.latitude - " + @latitude.to_s  + "), 2) + POW(69.1 * (" + @longitude.to_s + " - R.longitude) * COS(latitude / 57.3), 2)) AS distance, R.latitude, R.longitude
         From restaurants R
         Where R.city like '%" + params[:city] +
         "%') R1
