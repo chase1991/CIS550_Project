@@ -11,6 +11,8 @@
 			<h1 style="letter-spacing: 1px; font-size:14pt; text-transform: uppercase;" class="lead"><%= @result.web.first.title %></h1>
 			<% if (@result.image.first != nil) %>
 				<img src="<%= @result.image.first.media_url %>" class="img-circle" style="width:35%">
+			<% else %>
+				<img src="default.png" class="img-circle" style="width:35%">
 			<% end %>
 
 			<p></br></br><%= @result.web.first.summary %></p>
