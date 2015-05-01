@@ -11,21 +11,10 @@ class QuestionController < ApplicationController
     sql = "SELECT R1.name, R1.full_address, R1.city, BC1.category, R1.star,SeniorUser.user_id, RE3.business_id
     From 
     (
-    SELECT Users.user_id, count(Review.business_id) as totalNum
-    FROM
-    (
     Select distinct RE1.user_id
     From reviews RE1
-    Where RE1.business_id = '" + params[:param3] + "') as Users
-    Inner join 
-    (
-    Select RE2.user_id, RE2.business_id
-    from reviews RE2  
-    ) as Review
-    on Users.user_id = Review.user_id
-    group by Users.user_id
-    order by totalNum desc
-    limit 1
+    Where RE1.business_id = '" + params[:param3] + "'
+    limit 3
     ) as SeniorUser
     Inner join reviews RE3
     Inner join
