@@ -8,7 +8,7 @@ class QuestionController < ApplicationController
     keywords = "" << params[:param1] << " " << params[:param2]
     @result = BingSearch.composite(keywords, [:web, :image, :news])
     
-    sql = "SELECT R1.name, R1.full_address, R1.city, BC1.category, R1.star,SeniorUser.user_id, RE3.business_id
+    sql = "SELECT distinct R1.name, R1.full_address, R1.city, BC1.category, R1.star, RE3.business_id
     From 
     (
     Select distinct RE1.user_id
@@ -27,6 +27,7 @@ class QuestionController < ApplicationController
     Where BC.category Like '%" + params[:param4] + "%'
     ) as BC1
     where SeniorUser.user_id = RE3.user_id and RE3.business_id = R1.restaurant_id and R1.restaurant_id = BC1.business_id
+    and RE3.business_id <> '" + params[:param3] + "'
     order by R1.star DESC,SeniorUser.user_id
     limit 5"
     restaurants = Restaurant.find_by_sql(sql)
